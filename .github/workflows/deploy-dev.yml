@@ -37,7 +37,7 @@ jobs:
     - name: PyTest with Coverage Report
       run: |
         python -m coverage run -m pytest
-        
+
 
     # ${GITHUB_SHA::7}
 
