@@ -43,7 +43,6 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
-jobs:
   pytest:
     steps:
     - uses: actions/checkout@v3
