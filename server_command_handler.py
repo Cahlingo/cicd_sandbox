@@ -35,3 +35,7 @@ class ServerCommandHandler:
             result = self.get_whisper(rest)
             return result
         return "Invalid command"
+
+    def ur_mom(self, blabla: str):
+        print("ur mom is bad")
+        
