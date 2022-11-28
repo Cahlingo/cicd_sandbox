@@ -23,8 +23,6 @@ jobs:
       - name:
         uses:
         with:
-
-jobs:
   pylint:
     runs-on: ubuntu-latest
     strategy:
