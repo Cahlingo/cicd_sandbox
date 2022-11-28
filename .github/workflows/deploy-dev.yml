@@ -8,7 +8,7 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
-  python,pytest,flake8:
+  python_pytest_flake8:
 
     runs-on: ubuntu-latest
     strategy:
