@@ -36,7 +36,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: PyTest with Coverage Report
       run: |
-        python -m coverage -m pytest
+        python -m run coverage -m pytest
         
 
     # ${GITHUB_SHA::7}
