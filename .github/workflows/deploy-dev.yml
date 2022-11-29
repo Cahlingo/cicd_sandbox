@@ -70,7 +70,7 @@ jobs:
 
   integration_test:
     needs: docker_build
-    run: echo ${{needs.docker_build.outputs.metatag }}
+
     runs-on: ubuntu-latest
     container: ubuntu
     services:
@@ -84,3 +84,4 @@ jobs:
     steps:
       - run: apt-get update; apt-get install curl -y
       - run: curl amazing_web:5000 | grep 'Hello, World!'
+      - run: echo ${{needs.docker_build.outputs.metatag }}
