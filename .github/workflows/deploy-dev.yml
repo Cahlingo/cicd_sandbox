@@ -81,4 +81,4 @@ jobs:
       - name: Curl shit
         run: |
           apt-get update; apt-get install curl -y
-          curl amazing_webb:5000 dockerhost | grep 'Hello, World!'
+          curl amazing_webb:5000 | grep 'Hello, World!'
