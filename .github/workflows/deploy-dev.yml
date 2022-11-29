@@ -49,6 +49,8 @@ jobs:
             password: ${{ secrets.DOCKER_PASSWORD }}
         - name: Check out code
           uses: actions/checkout@v2
-        - uses: docker/build-push-action@v3
         - name: Build the Docker image
           run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+          with:
+            push: true
+            tags: user/app:latest
