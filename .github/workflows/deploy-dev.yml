@@ -60,5 +60,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          push: true
+          load: true
           tags: cahlingo/amazing_web:latest
