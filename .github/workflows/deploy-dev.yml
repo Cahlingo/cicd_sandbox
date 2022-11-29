@@ -59,12 +59,13 @@ jobs:
           tags: "${{ github.head_ref || github.ref_name }}${{ env.SHORT_SHA }}"
 
       - name: Build and push
-        id: bap
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
+        outputs:
+          output1: ${{ steps.meta.outputs.test }}
 
   integration_test:
     needs: docker_build
@@ -72,7 +73,7 @@ jobs:
     container: ubuntu
     services:
       amazing_web:
-        image: ghcr.io/cahlingo/cicd_sandbox/flask:${{ steps.bap.outputs.tags }}
+        image: ghcr.io/cahlingo/cicd_sandbox/flask:${{needs.docker_build.outputs.output1}}
         credentials:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
