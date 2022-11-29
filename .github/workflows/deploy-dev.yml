@@ -27,6 +27,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          echo "PYTHONPATH=hello_flask" >> $GITHUB_ENV
 
       - name: Lint with flake8
         run: |
@@ -36,23 +37,3 @@ jobs:
         run: python -m coverage run -m pytest
       - name: Print Coverage report
         run: python -m coverage report
-
-    # ${GITHUB_SHA::7}
-
-    # steps:
-    #   - name: "Login via Azure CLI"
-    #     uses: azure/login@v1
-    #     with:
-    #       creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    #   - name: "Deploy to Azure Container Instances"
-    #     uses: "azure/aci-deploy@v1"
-    #     with:
-    #       resource-group: ritlingo_web
-    #       image: ${{ needs.docker-image.outputs.tags }}
-    #       cpu: 1
-    #       memory: 1
-    #       dns-name-label: ritlingo
-    #       name: ritlingo_web
-    #       location: "Sweden Central"
-    #       ports: "8080"
