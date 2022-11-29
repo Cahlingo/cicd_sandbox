@@ -55,7 +55,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/${{ github.repository }}/amazing_flask_app
+          images: ghcr.io/${{ github.repository }}/cicd_sandbox/amazing_flask_app
           tags: "${{ github.head_ref || github.ref_name }}${{ env.SHORT_SHA }}"
 
       - name: Build and push
