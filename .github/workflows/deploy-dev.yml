@@ -77,4 +77,4 @@ jobs:
       - name: Curl shit
         run: |
           apt-get update; apt-get install curl -y
-          curl localhost | grep 'Hello, World!'
+          curl localhost:5000 | grep 'Hello, World!'
