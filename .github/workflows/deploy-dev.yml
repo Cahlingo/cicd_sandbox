@@ -67,7 +67,6 @@ jobs:
 
   integration_test:
     runs-on: ubuntu-latest
-    needs: docker_build
     container: ubuntu
     services:
       amazing_web:
@@ -82,4 +81,4 @@ jobs:
       - name: Curl shit
         run: |
           apt-get update; apt-get install curl -y
-          curl localhost:5000 dockerhost | grep 'Hello, World!'
+          curl amazing_webb:5000 dockerhost | grep 'Hello, World!'
