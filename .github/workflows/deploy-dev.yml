@@ -77,8 +77,5 @@ jobs:
         ports:
           - 5000:5000
     steps:
-      - uses: actions/checkout@v3
-      - name: Curl shit
-        run: |
-          apt-get update; apt-get install curl -y
-          curl amazing_webb:5000 | grep 'Hello, World!'
+      - run: apt-get update; apt-get install curl -y
+      - run: curl amazing_web:5000 | grep 'Hello, World!'
