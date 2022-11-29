@@ -67,6 +67,7 @@ jobs:
 
   integration_test:
     runs-on: ubuntu-latest
+    needs: docker_build
     container:
       image: ghcr.io/cahlingo/cicd_sandbox/flask:latest
       credentials:
