@@ -38,19 +38,31 @@ jobs:
       - name: Print Coverage report
         run: python -m coverage report
   docker_build:
-      runs-on: ubuntu-latest
-      steps:
-        -
-          name: Login to GitHub Container Registry
-          uses: docker/login-action@v2
-          with:
-            registry: ghcr.io
-            username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PASSWORD }}
-        - name: Check out code
-          uses: actions/checkout@v2
-        - name: Build the Docker image
-          run: |
-            docker build . --file Dockerfile --tag ritlingo
-            docker tag ritlingo ghcr.io/cahlingo/ritlingo
-            docker push ghcr.io/cahlingo/ritlingo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set docker image var
+        run: DOCKER_IMAGE=cahlingo/amazing-website
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: latest
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
