@@ -75,8 +75,6 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     steps:
-
       - name: Curl shit
         run: |
-          apt-get update; apt-get install curl -y
           curl -X 127.0.0.1:5000 | grep 'Hello, World!'
