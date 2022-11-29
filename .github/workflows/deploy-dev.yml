@@ -54,7 +54,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Start Flask server
-        run: nohup flask run
+        run: nohup flask run > nohup.out 2> nohup.err < /dev/null &
         #run: FLASK_APP=hello_flask flask run
 
       - name: Curl Flask server
