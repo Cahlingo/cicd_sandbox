@@ -65,7 +65,8 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-      - name:
+      - name: test
+        id: siri
         run: echo ${{ steps.meta.outputs.tags }}
   job3:
     runs-on: ubuntu-latest
