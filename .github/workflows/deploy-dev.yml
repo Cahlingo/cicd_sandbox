@@ -52,8 +52,6 @@ jobs:
         run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       - name: Docker meta
-        outputs:
-          output1: ${{steps.meta.outputs.tags}}
         id: meta
         uses: docker/metadata-action@v4
         with:
@@ -66,7 +64,8 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-
+  outputs:
+    output1: ${{steps.meta.outputs.tags}}
   integration_test:
     needs: docker_build
     runs-on: ubuntu-latest
