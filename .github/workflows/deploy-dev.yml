@@ -55,7 +55,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/${{ github.repository }}/cicd_sandbox/amazing_flask_app
+          images: ghcr.io/${{ github.repository }}/amazing_flask_app
           tags: "${{ github.head_ref || github.ref_name }}${{ env.SHORT_SHA }}"
 
       - name: Build and push
@@ -73,7 +73,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
       ports:
-      - "5000:5000"
+        - 5000:5000
     steps:
       - uses: actions/checkout@v3
       - name: Curl shit
