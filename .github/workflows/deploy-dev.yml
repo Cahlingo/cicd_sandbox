@@ -52,6 +52,8 @@ jobs:
         run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       - name: Docker meta
+        outputs:
+          output1: ${{steps.meta.outputs.tags}}
         id: meta
         uses: docker/metadata-action@v4
         with:
@@ -71,7 +73,7 @@ jobs:
     container: ubuntu
     services:
       amazing_web:
-        image: ghcr.io/cahlingo/cicd_sandbox/flask:${{needs.docker_build.steps.meta.outputs.tags}}
+        image: ghcr.io/cahlingo/cicd_sandbox/flask:${{needs.docker_build.outputs.output1}}
         credentials:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
