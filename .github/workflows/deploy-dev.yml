@@ -52,4 +52,4 @@ jobs:
         - name: Build the Docker image
           run: |
             docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-            docker push ghcr.io/cahlingo/my_flask
+            docker push ghcr.io/cahlingo/$(date +%s)
