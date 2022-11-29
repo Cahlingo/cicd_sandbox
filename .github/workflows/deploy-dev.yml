@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: python_pytest_flake8
     outputs:
-      metatag: ${{ steps.meta.outputs.test }}
+      metatag: ${{ steps.meta.outputs.bnp }}
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -51,7 +51,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Generate short sha
-        run: echo "::set-ouput SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
+        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       - name: Docker meta
         id: meta
@@ -61,6 +61,7 @@ jobs:
           tags: "${{ github.head_ref || github.ref_name }}${{ env.SHORT_SHA }}"
 
       - name: Build and push
+        id: bnp
         uses: docker/build-push-action@v3
         with:
           context: .
@@ -69,11 +70,12 @@ jobs:
 
   integration_test:
     needs: docker_build
+    run: echo ${{needs.docker_build.outputs.metatag }}
     runs-on: ubuntu-latest
     container: ubuntu
     services:
       amazing_web:
-        image: ghcr.io/cahlingo/cicd_sandbox/flask:echo ${{needs.docker_build.outputs.metatag }}
+        image: ghcr.io/cahlingo/cicd_sandbox/flask:${{needs.docker_build.outputs.metatag }}
         credentials:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
