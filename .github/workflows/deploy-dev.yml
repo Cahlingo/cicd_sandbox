@@ -57,7 +57,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ghcr.io/${{ github.repository }}/flask
-          tags: "::set-output ${{ github.head_ref || github.ref_name }}${{ env.SHORT_SHA }}"
+          tags: "${{ github.head_ref || github.ref_name }}${{ env.SHORT_SHA }}"
 
       - name: Build and push
         uses: docker/build-push-action@v3
@@ -66,7 +66,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
     outputs:
-      metatag: ${{ steps.meta.outputs.meta }}
+      metatag: ${{ steps.meta.outputs.tags }}
 
   job3:
     runs-on: ubuntu-latest
