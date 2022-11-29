@@ -2,7 +2,7 @@ name: Deploy dev
 
 on:
   push:
-    branches: ["ur_mom"]
+    branches: ["ur-mom"]
 
 env:
   REGISTRY: ghcr.io
