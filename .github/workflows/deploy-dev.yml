@@ -68,9 +68,13 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
 
-  integration_test:
+  job3:
     needs: docker_build
+    steps:
+      - run: echo ${{needs.docker_build.outputs.metatag }}
 
+  integration_test:
+    needs: job3
     runs-on: ubuntu-latest
     container: ubuntu
     services:
