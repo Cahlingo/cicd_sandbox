@@ -54,7 +54,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Start Flask server
-        run: FLASK_APP=hello_flask flask run
+        run: flask run
+        #run: FLASK_APP=hello_flask flask run
 
       - name: Curl Flask server
         run: curl http://127.0.0.1:5000
