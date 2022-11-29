@@ -69,12 +69,12 @@ jobs:
 
   integration_test:
     runs-on: ubuntu-latest
-    steps:
-    - name: Test
-      container: ghcr.io/cahlingo/cicd_sandbox:latest
+    container:
+      image: ghcr.io/cahlingo/cicd_sandbox:latest
       credentials:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Curl shit
-      run: |
-        curl -X 127.0.0.1:5000 | grep 'Hello, World!'
+    steps:
+      - name: Curl shit
+        run: |
+          curl -X 127.0.0.1:5000 | grep 'Hello, World!'
