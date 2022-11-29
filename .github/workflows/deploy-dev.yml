@@ -60,5 +60,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          load: true
-          tags: cahlingo/amazing_web:latest
+          push: true
+          tags: devops_cicd/my_flask:latest
