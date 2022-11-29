@@ -37,7 +37,8 @@ jobs:
   docker_build:
     runs-on: ubuntu-latest
     needs: python_pytest_flake8
-
+    outputs:
+      tagz: ${{ steps.meta.outputs.tags }}
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -66,14 +67,11 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
 
-      - name: test
-        id: siri
-        run: echo ${{ steps.meta.outputs.tags }}
   job3:
     runs-on: ubuntu-latest
     needs: docker_build
     steps:
-      - run: echo ${{needs.docker_build.outputs.siri }}
+      - run: echo ${{needs.docker_build.outputs.tagz }}
 
   integration_test:
     needs: job3
