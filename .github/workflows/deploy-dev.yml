@@ -55,7 +55,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/${{ github.repository }}/amazing_flask_app
+          images: ghcr.io/${{ github.repository }}/flask
           tags: "${{ github.head_ref || github.ref_name }}${{ env.SHORT_SHA }}"
 
       - name: Build and push
@@ -68,7 +68,7 @@ jobs:
   integration_test:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/cahlingo/cicd_sandbox/amazing_flask_app:latest
+      image: ghcr.io/cahlingo/cicd_sandbox/flask:latest
       credentials:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
