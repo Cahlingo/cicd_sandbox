@@ -73,7 +73,7 @@ jobs:
     container: ubuntu
     services:
       amazing_web:
-        image: ghcr.io/cahlingo/cicd_sandbox/flask:${{needs.docker_build.outputs.metatag }}
+        image: ghcr.io/cahlingo/cicd_sandbox/flask:echo ${{needs.docker_build.outputs.metatag }}
         credentials:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
