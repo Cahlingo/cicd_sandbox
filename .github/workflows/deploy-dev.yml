@@ -68,7 +68,7 @@ jobs:
   integration_test:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/cahlingo/cicd_sandbox:latest
+      image: ghcr.io/cahlingo/cicd_sandbox/amazing_flask_app:latest
       credentials:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
