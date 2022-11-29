@@ -51,6 +51,6 @@ jobs:
           uses: actions/checkout@v2
         - name: Build the Docker image
           run: |
-            docker build . --file Dockerfile --tag my_flask
-            docker tag my_flask ghcr.io/cahlingo/my_flask
-            docker push ghcr.io/cahlingo/my_flask
+            docker build . --file Dockerfile --tag ritlingo
+            docker tag ritlingo ghcr.io/cahlingo/ritlingo
+            docker push ghcr.io/cahlingo/ritlingo
