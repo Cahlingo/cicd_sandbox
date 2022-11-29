@@ -65,7 +65,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
     outputs:
-      output1: ${{steps.meta.outputs.test}}
+      output1: ${{steps.meta.outputs.tags}}
   integration_test:
     needs: docker_build
     runs-on: ubuntu-latest
